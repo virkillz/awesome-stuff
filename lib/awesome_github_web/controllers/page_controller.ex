@@ -10,6 +10,7 @@ defmodule AwesomeGithubWeb.PageController do
 
     list =
       Enum.uniq_by(repos, fn %AwesomeGithub.Project.ListingRepository{listing_id: x} -> x end)
+      |> IO.inspect()
 
     conn
     |> render("index.html",

@@ -6,8 +6,10 @@
                     <span>Root List</span>
                 </div>
         
+
+        <%= for list <- Enum.filter(@list, fn x -> is_nil(x.listing.parent_id) end) do %>
             <div class="py-6">
-                    <div class="text-xl font-semibold px-2">Elixir</div>
+                    <div class="text-xl font-semibold px-2"><%= list.listing.name %></div>
                 <div class="flex">
                     <div class="w-1/3 px-2">
         
@@ -16,7 +18,7 @@
                         <i class="la la-list"></i> <span>132 Sub List</span>
                     </div>
         
-                    <p class="text-sm">This is Elixir Description</p>
+                    <p class="text-sm"><%= list.listing.description %></p>
                     <button class="border bg-gray-300 border-gray-600 py-1 px-4 rounded my-2 hover:bg-white text-sm">View More</button>
         
                     </div>
@@ -31,13 +33,14 @@
         
                         <div class="">
                             <ul>
+                                <%= for repo <- Enum.filter(@repos, fn x -> x.listing_id == list.listing_id end) |> Enum.sort(&(&1.repository.star_count >= &2.repository.star_count)) do %>
                                 <a href="#">
                                 <li class="py-2 rounded px-2 py-2 hover:bg-gray-200 hover:text-indigo-500 my-2">
                                     <div class="flex justify-between">
-                                        <div class="font-semibold">Title</div>
+                                        <div class="font-semibold"><%= repo.repository.repo_name %></div>
                                         <div class="text-sm">
-                                            <i class="la la-star"></i> <span>132</span>
-                                            <i class="la la-calendar"></i> <span>132</span>
+                                            <i class="la la-star"></i> <span><%= repo.repository.star_count %></span>
+                                            <i class="la la-calendar"></i> <span><%= day = Timex.diff(Timex.now, repo.repository.last_commit, :days) %> <%= if day > 1, do: "days", else: "day" %></span>
                                         </div>
                                     </div>
                                     <div class="text-sm">
@@ -45,32 +48,8 @@
                                     </div>
                                 </li>
                                 </a>
-        
-                                <li class="py-2 rounded px-2 py-2 hover:bg-gray-200 my-2">
-                                    <div class="flex justify-between">
-                                        <div class="font-semibold">Title</div>
-                                        <div class="text-sm">
-                                            <i class="la la-star"></i> <span>132</span>
-                                            <i class="la la-calendar"></i> <span>132</span>
-                                        </div>
-                                    </div>
-                                    <div class="text-sm">
-                                        Sesuatu yang harusnya menjadi deskripsi
-                                    </div>
-                                </li>
-        
-                                <li class="py-2 rounded px-2 py-2 hover:bg-gray-200 my-2">
-                                    <div class="flex justify-between">
-                                        <div class="font-semibold">Title</div>
-                                        <div class="text-sm">
-                                            <i class="la la-star"></i> <span>132</span>
-                                            <i class="la la-calendar"></i> <span>132</span>
-                                        </div>
-                                    </div>
-                                    <div class="text-sm">
-                                        Sesuatu yang harusnya menjadi deskripsi
-                                    </div>
-                                </li>                       
+                                <% end %>
+                     
                             </ul>
                         </div>
                     </div>
@@ -104,68 +83,5 @@
         
                 </div>
             </div>
-            </div>
-        
-         
-
-<%= for list <- @list do %>
-<section class="text-center space--xs">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-lg-8">
-                    <h2><%= list.listing.name %></h2>
-                    <p class="lead">
-                        <%= list.listing.description %>
-                    </p>
-                </div>
-            </div>
-            <!--end of row-->
-        </div>
-        <!--end of container-->
-    </section>
-
-<section>
-                <div class="container">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-lg-8">
-                            <ul class="results-list">
-                                <%= for repo <- Enum.filter(@repos, fn x -> x.listing_id == list.listing_id end) |> Enum.sort(&(&1.repository.star_count >= &2.repository.star_count)) do %>
-                                <li>
-                                <div>
-                                    
-                                    <div class="d-flex justify-content-between"> 
-                                    <a href="<%= repo.repository.html_url %>">                                   
-                                    <h4><%= repo.repository.repo_fullname %> </h4>
-                                     </a>
-
-                                    <div class="d-flex justify-content-betweenx">
-                                        <div class="d-flex align-items-center"><i data-feather="star"></i> <span class="px-1"> <%= repo.repository.star_count %></span></div>
-                                        
-                                        <div class="d-flex align-items-center"><i data-feather="git-commit"></i> <span class="px-1"> <%= day = Timex.diff(Timex.now, repo.repository.last_commit, :days) %> <%= if day > 1, do: "days", else: "day" %> since last commit </span></div>
-                                    </div>
-                                     </div>
-                                   
-                                    <p>
-                                        <%= repo.repository.short_description %>
-                                    </p>
-                                <!--
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center"><i data-feather="star"></i> <span class="px-1"> <%= repo.repository.star_count %></span></div>
-                                        <div class="d-flex align-items-center"><i data-feather="calendar"></i> <span class="px-1"> <%= repo.repository.repo_created_date %></span></div>                                        
-                                        <div class="d-flex align-items-center"><i data-feather="git-commit"></i> <span class="px-1"> <%= day = Timex.diff(Timex.now, repo.repository.last_commit, :days) %> <%= if day > 1, do: "days", else: "day" %> since last commit </span></div>
-                                    </div>
-                                -->
-                            </div>
-                                </li>
-
-                                <% end %> 
-
-                            </ul>
-                        </div>
-                    </div>
-                    <!--end of row-->
-                </div>
-                <!--end of container-->
-            </section>
-
-<% end %>
+          
+        <% end %>
