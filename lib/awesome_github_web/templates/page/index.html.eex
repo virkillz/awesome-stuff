@@ -1,0 +1,80 @@
+<section class="text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Awesome
+                    <span class="color--primary">Repo.</span></h1>
+                    <h3>Tracking Awesome Open Source Projects</h3>
+                <a class="btn btn--primary btn--lg type--uppercase" href="#">
+                    <span class="btn__text">
+                        Submit New Project
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!--end of row-->
+    </div>
+    <!--end of container-->
+</section>
+
+<%= for list <- @list do %>
+<section class="text-center space--xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8">
+                    <h2><%= list.listing.name %></h2>
+                    <p class="lead">
+                        <%= list.listing.description %>
+                    </p>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </section>
+
+<section>
+                <div class="container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-8">
+                            <ul class="results-list">
+                                <%= for repo <- Enum.filter(@repos, fn x -> x.listing_id == list.listing_id end) |> Enum.sort(&(&1.repository.star_count >= &2.repository.star_count)) do %>
+                                <li>
+                                <div>
+                                    
+                                    <div class="d-flex justify-content-between"> 
+                                    <a href="<%= repo.repository.html_url %>">                                   
+                                    <h4><%= repo.repository.repo_fullname %> </h4>
+                                     </a>
+
+                                    <div class="d-flex justify-content-betweenx">
+                                        <div class="d-flex align-items-center"><i data-feather="star"></i> <span class="px-1"> <%= repo.repository.star_count %></span></div>
+                                        
+                                        <div class="d-flex align-items-center"><i data-feather="git-commit"></i> <span class="px-1"> <%= day = Timex.diff(Timex.now, repo.repository.last_commit, :days) %> <%= if day > 1, do: "days", else: "day" %> since last commit </span></div>
+                                    </div>
+                                     </div>
+                                   
+                                    <p>
+                                        <%= repo.repository.short_description %>
+                                    </p>
+                                <!--
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex align-items-center"><i data-feather="star"></i> <span class="px-1"> <%= repo.repository.star_count %></span></div>
+                                        <div class="d-flex align-items-center"><i data-feather="calendar"></i> <span class="px-1"> <%= repo.repository.repo_created_date %></span></div>                                        
+                                        <div class="d-flex align-items-center"><i data-feather="git-commit"></i> <span class="px-1"> <%= day = Timex.diff(Timex.now, repo.repository.last_commit, :days) %> <%= if day > 1, do: "days", else: "day" %> since last commit </span></div>
+                                    </div>
+                                -->
+                            </div>
+                                </li>
+
+                                <% end %> 
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+
+<% end %>
