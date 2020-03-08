@@ -1,21 +1,112 @@
-<section class="text-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Awesome
-                    <span class="color--primary">Repo.</span></h1>
-                    <h3>Tracking Awesome Open Source Projects</h3>
-                <a class="btn btn--primary btn--lg type--uppercase" href="#">
-                    <span class="btn__text">
-                        Submit New Project
-                    </span>
-                </a>
+
+                
+            <div class="container mx-auto max-w-screen-lg p-4">
+                <div class="">
+                    <i class="la la-home"></i>
+                    <span>Root List</span>
+                </div>
+        
+            <div class="py-6">
+                    <div class="text-xl font-semibold px-2">Elixir</div>
+                <div class="flex">
+                    <div class="w-1/3 px-2">
+        
+                    <div class="text-sm my-4">
+                        <i class="la la-github"></i> <span>132 Repository</span><br>
+                        <i class="la la-list"></i> <span>132 Sub List</span>
+                    </div>
+        
+                    <p class="text-sm">This is Elixir Description</p>
+                    <button class="border bg-gray-300 border-gray-600 py-1 px-4 rounded my-2 hover:bg-white text-sm">View More</button>
+        
+                    </div>
+        
+        
+                    <div class="w-2/3 lg:flex">
+                    <div class="lg:w-1/2  px-2">
+                        <div class="w-100 border-b">
+                            <i class="la la-github"></i>
+                            <span>Projects </span>
+                        </div>
+        
+                        <div class="">
+                            <ul>
+                                <a href="#">
+                                <li class="py-2 rounded px-2 py-2 hover:bg-gray-200 hover:text-indigo-500 my-2">
+                                    <div class="flex justify-between">
+                                        <div class="font-semibold">Title</div>
+                                        <div class="text-sm">
+                                            <i class="la la-star"></i> <span>132</span>
+                                            <i class="la la-calendar"></i> <span>132</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        Sesuatu yang harusnya menjadi deskripsi
+                                    </div>
+                                </li>
+                                </a>
+        
+                                <li class="py-2 rounded px-2 py-2 hover:bg-gray-200 my-2">
+                                    <div class="flex justify-between">
+                                        <div class="font-semibold">Title</div>
+                                        <div class="text-sm">
+                                            <i class="la la-star"></i> <span>132</span>
+                                            <i class="la la-calendar"></i> <span>132</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        Sesuatu yang harusnya menjadi deskripsi
+                                    </div>
+                                </li>
+        
+                                <li class="py-2 rounded px-2 py-2 hover:bg-gray-200 my-2">
+                                    <div class="flex justify-between">
+                                        <div class="font-semibold">Title</div>
+                                        <div class="text-sm">
+                                            <i class="la la-star"></i> <span>132</span>
+                                            <i class="la la-calendar"></i> <span>132</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        Sesuatu yang harusnya menjadi deskripsi
+                                    </div>
+                                </li>                       
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2  px-2 lg:pt-0 pt-8">
+                            <div class="w-100 border-b">
+                            <i class="la la-list"></i>
+                            <span>Sub List </span>
+                            </div>
+        
+                            <div class="">
+                                <ul>
+                                <a href="#">
+                                <li class="py-2 rounded px-2 py-2 hover:bg-gray-200 hover:text-indigo-500 my-2">
+                                    <div class="flex justify-between">
+                                        <div class="font-semibold">Title</div>
+                                        <div class="text-sm">
+                                            <i class="la la-github"></i> <span>132</span>
+                                            <i class="la la-list"></i> <span>132</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        Sesuatu yang harusnya menjadi deskripsi
+                                    </div>
+                                </li>
+                                </a>
+                                </ul>
+        
+                            </div>
+                    </div>
+                    </div>
+        
+                </div>
             </div>
-        </div>
-        <!--end of row-->
-    </div>
-    <!--end of container-->
-</section>
+            </div>
+        
+         
 
 <%= for list <- @list do %>
 <section class="text-center space--xs">

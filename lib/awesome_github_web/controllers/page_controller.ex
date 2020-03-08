@@ -13,7 +13,7 @@ defmodule AwesomeGithubWeb.PageController do
 
     conn
     |> render("index.html",
-      layout: {AwesomeGithubWeb.LayoutView, "fe.html"},
+      layout: {AwesomeGithubWeb.LayoutView, "fe_layout.html"},
       repos: repos,
       list: list
     )
@@ -23,7 +23,7 @@ defmodule AwesomeGithubWeb.PageController do
     changeset = Account.change_user(%User{})
 
     render(conn, "login.html",
-      layout: {AwesomeGithubWeb.LayoutView, "fe.html"},
+      layout: {AwesomeGithubWeb.LayoutView, "fe_layout.html"},
       changeset: changeset
     )
   end
@@ -32,7 +32,7 @@ defmodule AwesomeGithubWeb.PageController do
     changeset = Account.change_user(%User{})
 
     render(conn, "login-nosocial.html",
-      layout: {AwesomeGithubWeb.LayoutView, "fe.html"},
+      layout: {AwesomeGithubWeb.LayoutView, "fe_layout.html"},
       changeset: changeset
     )
   end
@@ -41,7 +41,7 @@ defmodule AwesomeGithubWeb.PageController do
     changeset = Account.change_user(%User{})
 
     render(conn, "register.html",
-      layout: {AwesomeGithubWeb.LayoutView, "fe.html"},
+      layout: {AwesomeGithubWeb.LayoutView, "fe_layout.html"},
       changeset: changeset
     )
   end
@@ -59,7 +59,7 @@ defmodule AwesomeGithubWeb.PageController do
         conn
         |> put_flash(:error, "Oops, check error below")
         |> render("register.html",
-          layout: {AwesomeGithubWeb.LayoutView, "fe.html"},
+          layout: {AwesomeGithubWeb.LayoutView, "fe_layout.html"},
           changeset: changeset
         )
     end
@@ -78,14 +78,14 @@ defmodule AwesomeGithubWeb.PageController do
         conn
         |> put_flash(:error, reason)
         |> render("login-nosocial.html",
-          layout: {AwesomeGithubWeb.LayoutView, "fe.html"},
+          layout: {AwesomeGithubWeb.LayoutView, "fe_layout.html"},
           changeset: changeset
         )
     end
   end
 
   def recover(conn, _params) do
-    render(conn, "recover.html", layout: {AwesomeGithubWeb.LayoutView, "fe.html"})
+    render(conn, "recover.html", layout: {AwesomeGithubWeb.LayoutView, "fe_layout.html"})
   end
 
   def signout(conn, _parms) do
