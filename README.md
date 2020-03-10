@@ -16,7 +16,6 @@ With this simple tools we can :
 
 ToDo List
 - [ ] Create Background process to update the repository metadata.
-- [ ]
 
 
 ## Installation:
