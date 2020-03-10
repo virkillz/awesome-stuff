@@ -9,11 +9,11 @@
         <title> Blah :: Transaction</title>
         <!-- fonts -->
         <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="assets/css/line-awesome.min.css">
-        <link rel="stylesheet" href="assets/css/line-awesome-font-awesome.css">        
+        <link rel="stylesheet" href="/assets/css/line-awesome.min.css">
+        <link rel="stylesheet" href="/assets/css/line-awesome-font-awesome.css">        
 
         <!--Core CSS -->
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
 
          
 

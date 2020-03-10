@@ -166,6 +166,15 @@ defmodule AwesomeGithub.Project do
     Repo.all(query)
   end
 
+  def list_listing_by_parent_id(id) do
+    query =
+      from(l in Listing,
+        where: l.parent_id == ^id
+      )
+
+    Repo.all(query)
+  end
+
   def parent_normalize(map_of_listing) do
   end
 
@@ -183,8 +192,14 @@ defmodule AwesomeGithub.Project do
       ** (Ecto.NoResultsError)
 
   """
-  def get_listing!(id), do: Repo.get!(Listing, id)
+  def get_listing!(id) do
+  
+  query = from l in Listing,
+    where: l.id == ^id,
+    preload: [listing_repository: [:repository]]
 
+   Repo.one!(query)
+  end
   @doc """
   Creates a listing.
 
@@ -285,6 +300,17 @@ defmodule AwesomeGithub.Project do
 
   """
   def get_listing_repository!(id), do: Repo.get!(ListingRepository, id)
+
+
+  def list_listing_repository_by_listing_id(id) do
+        query =
+      from(l in ListingRepository,
+        where: l.listing_id == ^id,
+        preload: [:repository, :listing]
+      )
+
+    Repo.all(query)
+  end
 
   @doc """
   Creates a listing_repository.

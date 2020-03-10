@@ -7,10 +7,8 @@ defmodule AwesomeGithubWeb.PageController do
 
   def index(conn, _params) do
     repos = Project.list_listing_repository()
-
-    list =
-      Enum.uniq_by(repos, fn %AwesomeGithub.Project.ListingRepository{listing_id: x} -> x end)
-      |> IO.inspect()
+    
+    list = Project.list_listing()
 
     conn
     |> render("index.html",
@@ -35,6 +33,21 @@ defmodule AwesomeGithubWeb.PageController do
     render(conn, "login-nosocial.html",
       layout: {AwesomeGithubWeb.LayoutView, "fe_layout.html"},
       changeset: changeset
+    )
+  end
+
+  def list_detail(conn, %{"id" => id}) do
+
+    list_info = Project.get_listing!(id) |> IO.inspect
+    repos = Project.list_listing_repository_by_listing_id(id) |> IO.inspect
+    sublist = Project.list_listing_by_parent_id(id) |>IO.inspect
+
+   conn
+    |> render("list_detail.html",
+      layout: {AwesomeGithubWeb.LayoutView, "fe_layout.html"},
+      repos: repos,
+      sublist: sublist,
+      list_info: list_info
     )
   end
 

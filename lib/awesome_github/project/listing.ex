@@ -14,6 +14,7 @@ defmodule AwesomeGithub.Project.Listing do
     timestamps()
 
     belongs_to(:parent, AwesomeGithub.Project.Listing)
+    has_many(:listing_repository, AwesomeGithub.Project.ListingRepository)
   end
 
   @doc false

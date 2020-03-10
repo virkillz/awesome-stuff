@@ -27,11 +27,13 @@ defmodule AwesomeGithubWeb.Router do
     pipe_through([:browser, :auth])
 
     get("/", UserController, :dashboard)
+
     get("/profile", UserController, :profile)
     get("/locked", UserController, :locked)
     resources("/activity", ActivityController, only: [:index, :show, :delete])
     resources("/user", UserController)
     get("/logout", UserController, :logout)
+
 
     resources("/repositories", RepositoryController)
     resources("/listing", ListingController, except: [:edit, :update])
@@ -40,6 +42,8 @@ defmodule AwesomeGithubWeb.Router do
 
   scope "/", AwesomeGithubWeb do
     pipe_through(:browser)
+
+    get("/list/:id", PageController, :list_detail)
 
     get("/", PageController, :index)
     get("/login", PageController, :login)
